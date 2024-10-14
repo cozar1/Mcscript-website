@@ -1,116 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCScript</title>
-    <link rel="stylesheet" href="../static/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
-    <style>
-        .hidden { display: none; }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <div class="header">
-            <h1>M.Cscript</h1>
-            <div class="header-buttons">                
-                <a href="mods.html"><button><i class="fa-solid fa-gamepad"></i> Mods</button></a>
-                <a href="resource_packs.html"><button><i class="fa-solid fa-image"></i> Resource Packs</button></a>
-                <a href="#"><button><i class="fa-solid fa-code"></i> Datapacks</button></a>
-                <a href="#"><button><i class="fa-solid fa-eye"></i> Shaders</button></a>
-                <a href="#"><button><i class="fa-solid fa-wrench"></i> Tools</button></a>
-            </div>
-        </div>
-        <div class="side_panel">
-            <h1><i class="fa-solid fa-gamepad"></i> Mods</h1>
-            <div class="filter">
-                <label class="checkbox-container"><i class="fa-solid fa-wand-magic-sparkles"></i> Fantasy
-                    <input type="checkbox" value="Fantasy">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <div class="filter">
-                <label class="checkbox-container"><i class="fa-solid fa-gun"></i> Guns
-                    <input type="checkbox" value="guns">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <div class="filter">
-                <label class="checkbox-container"><i class="fa-solid fa-location-dot"></i> Adventure
-                    <input type="checkbox" value="adventure">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <div class="filter">
-                <label class="checkbox-container"><i class="fa-solid fa-user"></i> Client-Side
-                    <input type="checkbox" value="Client-Side">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <div class="filter">
-                <label class="checkbox-container"><i class="fa-regular fa-eye"></i> Visual
-                    <input type="checkbox" value="Visual">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <div class="filter">
-                <label class="checkbox-container"><i class="fa-solid fa-gear"></i> Optimisation
-                    <input type="checkbox" value="Optimisation">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-        </div>
-        <div class="grid">
-            {% for mod in mods %}
-            <div class="grid-item">
-                <a class="card" data-tags="{{ mod['genre_name'] }}" href="/mod/{{ mod['id'] }}">
-                    <img src="static/images/sword.png" alt="">                 
-                    <div class="card-content">
-                        <div class="impressions">
-                            <h2>{{ mod['mod_name'] }}</h2>
-                            <p><i class="fa-solid fa-user"></i> <span class="studio-name">{{ mod['studio_name'] }}</span></p>
-                            <p> <i class="fa-solid fa-eye"></i> {{ mod['views'] }}</p>
-                            <p> <i class="fa-solid fa-heart"></i> {{ mod['likes'] }}</p>                     
-                            <p> <i class="fa-solid fa-download"></i> {{ mod['downloads'] }}</p>
-                            <p> <i class="fa-solid fa-tag"></i> {{ mod['genre'] }}</p>                            
-                        </div>
-                    </div>
-                </a>
-            </div>
-            {% endfor %}
-        </div>
+{% extends "layout.html" %}
+{% block content %}
+<div class="side_panel">
+    <h1><i class="fa-solid fa-gamepad"></i> Mods</h1>
+    <div class="filter">
+        <label class="checkbox-container"><i class="fa-solid fa-wand-magic-sparkles"></i> Fantasy
+            <input type="checkbox" value="Fantasy">
+            <span class="checkmark"></span>
+        </label>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const checkboxes = document.querySelectorAll('.side_panel input[type="checkbox"]');
-            const cards = document.querySelectorAll('.card');
+    <div class="filter">
+        <label class="checkbox-container"><i class="fa-solid fa-gun"></i> Guns
+            <input type="checkbox" value="guns">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+    <div class="filter">
+        <label class="checkbox-container"><i class="fa-solid fa-location-dot"></i> Adventure
+            <input type="checkbox" value="adventure">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+    <div class="filter">
+        <label class="checkbox-container"><i class="fa-solid fa-user"></i> Client-Side
+            <input type="checkbox" value="Client-Side">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+    <div class="filter">
+        <label class="checkbox-container"><i class="fa-regular fa-eye"></i> Visual
+            <input type="checkbox" value="Visual">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+    <div class="filter">
+        <label class="checkbox-container"><i class="fa-solid fa-gear"></i> Optimisation
+            <input type="checkbox" value="Optimisation">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+</div>
+<div class="grid">
+    {% for mod in mods %}
+    <div class="grid-item">
+        <a class="card" data-tags="{{ mod['genre_name'] }}" href="/mod/{{ mod['id'] }}">
+            <img src="static/images/sword.png" alt="">
+            <div class="card-content">
+                <div class="impressions">
+                    <h2>{{ mod['mod_name'] }}</h2>
+                    <p><i class="fa-solid fa-user"></i> <span class="studio-name">{{ mod['studio_name'] }}</span></p>
+                    <p> <i class="fa-solid fa-eye"></i> {{ mod['views'] }}</p>
+                    <p> <i class="fa-solid fa-heart"></i> {{ mod['likes'] }}</p>
+                    <p> <i class="fa-solid fa-download"></i> {{ mod['downloads'] }}</p>
+                    <p> <i class="fa-solid fa-tag"></i> {{ mod['genre'] }}</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
 
-            function filterCards() {
-                // Get the selected tags from the checkboxes
-                const selectedTags = Array.from(checkboxes)
-                    .filter(checkbox => checkbox.checked)
-                    .map(checkbox => checkbox.value);
-                
-                cards.forEach(card => {
-                    // Get tags from the card
-                    const cardTags = card.getAttribute('data-tags').split(',').map(tag => tag.trim());
-
-                    // Check if the card contains all selected tags
-                    const isVisible = selectedTags.length === 0 || selectedTags.every(tag => cardTags.includes(tag));
-
-                    card.closest('.grid-item').classList.toggle('hidden', !isVisible);
-                });
-            }
-
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', filterCards);
-            });
-
-            filterCards(); // Initial filter
-        });
-    </script>
-</body>
-</html>
+{% endblock %}

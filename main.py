@@ -44,7 +44,18 @@ WHERE mods.id = ?
 ''', (id,))
 
     mods = cursor.fetchall()
-    return render_template("mods.html", mod=mods)
+    mods = mods[0]
+    mods = {
+        "mod_name": mods[0],
+        "genre_name": mods[1],
+        "studio_name": mods[2],
+        "views": mods[3],
+        "downloads": mods[4],
+        "likes": mods[5],
+        "mod_id": mods[6]
+    }
+
+    return render_template("mod.html", mod=mods)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<video width="320" height="240" controls>
+    <source src="{{ url_for('static', filename='thick') }}" type="video/mp4">
+
+</video>
+
+{{ mod['mod_name'] }}
+{% endblock %}

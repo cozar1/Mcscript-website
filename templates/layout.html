@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCScript</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>M.Cscript</h1>
+            <div class="header-buttons">
+                <a href="/"><button><i class="fa-solid fa-gamepad"></i> Mods</button></a>
+                <a href="resource_packs.html"><button><i class="fa-solid fa-image"></i> Resource Packs</button></a>
+                <a href="#"><button><i class="fa-solid fa-code"></i> Datapacks</button></a>
+                <a href="#"><button><i class="fa-solid fa-eye"></i> Shaders</button></a>
+                <a href="#"><button><i class="fa-solid fa-wrench"></i> Tools</button></a>
+            </div>
+        </div>
+        
+        {% block content %}
+        {% endblock %}
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const checkboxes = document.querySelectorAll('.side_panel input[type="checkbox"]');
+                const cards = document.querySelectorAll('.card');
+
+                function filterCards() {
+                    // Get the selected tags from the checkboxes
+                    const selectedTags = Array.from(checkboxes)
+                        .filter(checkbox => checkbox.checked)
+                        .map(checkbox => checkbox.value);
+
+                    cards.forEach(card => {
+                        // Get tags from the card
+                        const cardTags = card.getAttribute('data-tags').split(',').map(tag => tag.trim());
+
+                        // Check if the card contains all selected tags
+                        const isVisible = selectedTags.length === 0 || selectedTags.every(tag => cardTags.includes(tag));
+
+                        card.closest('.grid-item').classList.toggle('hidden', !isVisible);
+                    });
+                }
+
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', filterCards);
+                });
+
+                filterCards(); // Initial filter
+            });
+        </script>
+</body>
+
+</html>
