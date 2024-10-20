@@ -31,6 +31,7 @@ JOIN studio On mods.studio_id = studio.id;
 
     return render_template('mods.html', mods=mods)
 
+
 @app.route('/mod/<int:id>')
 def Mod(id):
     conn = sqlite3.connect(database)
@@ -56,6 +57,10 @@ WHERE mods.id = ?
     }
 
     return render_template("mod.html", mod=mods)
+
+@app.route('/resource_packs')
+def Resource_Packs():
+    return render_template("resource_packs.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

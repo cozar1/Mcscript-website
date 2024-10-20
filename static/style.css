@@ -22,8 +22,14 @@ body {
     max-width: 1200px;
 }
 
-.header h1{transition: 0.2s;}
-.header h1:hover{scale: 1.2;}
+.header h1{
+    transition: 0.2s;
+}
+.header h1:hover{
+    scale: 1.2;
+}
+
+
 
 .header {
     font-family: 'Monomaniac One';
@@ -38,6 +44,45 @@ body {
     justify-content: space-between; /* Spreads items across the header */
     padding: 0 20px; /* Adds padding to the sides */
 }
+
+.item-title {
+    font-family: 'Monomaniac One';
+    border-radius: 10px;
+    grid-column: 1 / span 2;
+    background: #334747;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    gap: 20px; /* Adds space between the items */
+    align-items: center; /* Vertically centers items */
+    justify-content: space-between; /* Spreads items across the header */
+    padding: 0 20px; /* Adds padding to the sides */
+
+}
+
+.item-image {
+    width: 300px;
+    font-family: 'Monomaniac One';
+    border-radius: 10px;
+    grid-column: 1 / span 2;
+    background: #334747;
+    color: white;
+    font-size: 20px;
+    display: grid;
+    gap: 20px; /* Adds space between the items */
+    align-items: center; /* Vertically centers items */
+    justify-content: space-between; /* Spreads items across the header */
+    padding: 0 20px; /* Adds padding to the sides */
+
+}
+.item-image img {
+    width: 300px;
+
+    border-radius: 10px;
+    padding-top: 10px;
+}
+
+
 
 .header button {
     padding-left: 20px;
@@ -127,4 +172,8 @@ a.card:hover {scale: 1.2;}
     font-size: 15px;
 }
 
+h2 {
+    margin: 5px 0;
+    font-size: 30px;
+}
 
